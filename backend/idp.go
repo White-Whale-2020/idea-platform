@@ -17,7 +17,6 @@ package main
 
 import (
 	"fmt"
-	"io/ioutil"
 	"log"
 	"net/http"
 	"os"
@@ -44,12 +43,6 @@ func main() {
 	*/
 
 	log.Println("Web server running on port", port)
-	dir, _ := os.Getwd()
-	fmt.Println(dir)
-	files, _ := ioutil.ReadDir(".")
-	for _, file := range files {
-		fmt.Println(file.Name())
-	}
 	log.Fatal(http.ListenAndServe(":"+port, nil))
 }
 
