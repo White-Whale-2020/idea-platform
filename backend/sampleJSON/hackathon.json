@@ -1,0 +1,14 @@
+{
+  "api-version":"1.0",
+  "endpoint":"api/hackathons",
+  "hackathons":[
+    {
+      "name":"Crimson Code",
+      "date":"1582404971"
+    },
+    {
+      "name":"Dubhacks",
+      "date":"1582404971"
+    }
+  ]
+}

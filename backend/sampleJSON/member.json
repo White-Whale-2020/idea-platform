@@ -1,0 +1,16 @@
+{
+  "api-version":"1.0",
+  "endpoint":"api/users",
+  "users":[
+    {
+      "name":"kyle t",
+      "major":"cs",
+      "skills":[""]
+    },
+    {
+      "name":"kevon n",
+      "major":"cs",
+      "skills":["html", "css", "frontend"]
+    }
+  ]
+}

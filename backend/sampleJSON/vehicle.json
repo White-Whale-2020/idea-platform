@@ -1,0 +1,12 @@
+{
+  "api-version":"1.0",
+  "endpoint":"api/vehicles",
+  "vehicles":[
+    {
+      "vehicle-nbr":"1",
+      "driver":"mike g",
+      "navigator":"bobby t",
+      "passengers":["p1", "p2"]
+    }
+  ]
+}

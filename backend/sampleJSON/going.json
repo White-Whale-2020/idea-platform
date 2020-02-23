@@ -1,0 +1,34 @@
+{
+  "api-version":"1.0",
+  "endpoint":"api/going",
+  "members":[
+    {
+      "name":"Kyle T",
+      "team":"Team1",
+      "forms":[
+        {
+          "form-name":"emergency contact",
+          "turned-in":false
+        },
+        {
+          "form-name":"waiver contact",
+          "turned-in":true
+        }
+      ]
+    },
+    {
+      "name":"Mike G",
+      "team":"Team2",
+      "forms":[
+        {
+          "form-name":"emergency contact",
+          "turned-in":true
+        },
+        {
+          "form-name":"waiver contact",
+          "turned-in":true
+        }
+      ]
+    }
+  ]
+}

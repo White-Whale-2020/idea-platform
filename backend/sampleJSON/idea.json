@@ -1,0 +1,22 @@
+{
+  "api-version":"1.0",
+  "endpoint":"api/ideas",
+  "ideas":[
+    { 
+      "name": "Idea Platform",
+      "description": "A platform to organize hackathons",
+      "environment": "Golang backend, Docker, ?",
+      "proposer": "kyle",
+      "done": false,
+      "date-proposed": "1582404971"
+    },
+    { 
+      "name": "Someone Else's Idea",
+      "description": "Needed a second entry for more thorough testing",
+      "environment": "C/C++",
+      "proposer": "mike",
+      "done": true,
+      "date-proposed": "1582404971"
+    }
+  ]
+}
