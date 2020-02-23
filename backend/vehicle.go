@@ -17,8 +17,10 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"log"
+	"net/http"
 )
 
 type VehiclesS struct {
@@ -34,7 +36,7 @@ type VehicleS struct {
 	Pass   []string `json:"passengers"`
 }
 
-func TestVehicleJSON(name string) []byte {
+func VehicleGet(name string) []byte {
 	rtn, err := ioutil.ReadFile(name)
 	if err != nil {
 		log.Print(err)
@@ -50,4 +52,18 @@ func TestVehicleJSON(name string) []byte {
 		return rtn
 	}
 	return rtn
+}
+
+func VehiclePut(r *http.Request) []byte {
+	var tmpMbr VehicleS
+	body, err := ioutil.ReadAll(r.Body)
+	if err != nil {
+		log.Println("Error reading json")
+		log.Print(err)
+		fmt.Println()
+		return []byte("{\"status\":\"404 not found\"}")
+	}
+	json.Unmarshal(body, &tmpMbr)
+	// put the json into a database now
+	return []byte("{\"status\":\"200 ok\"}")
 }

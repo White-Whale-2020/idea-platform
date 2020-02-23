@@ -17,8 +17,10 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"log"
+	"net/http"
 )
 
 type IdeasS struct {
@@ -36,7 +38,7 @@ type IdeaS struct {
 	Date     string `json:"date-proposed"`
 }
 
-func TestIdeaJSON(name string) []byte {
+func IdeaGet(name string) []byte {
 	rtn, err := ioutil.ReadFile(name)
 	if err != nil {
 		log.Print(err)
@@ -52,4 +54,18 @@ func TestIdeaJSON(name string) []byte {
 		return rtn
 	}
 	return rtn
+}
+
+func IdeaPut(r *http.Request) []byte {
+	var tmpMbr IdeaS
+	body, err := ioutil.ReadAll(r.Body)
+	if err != nil {
+		log.Println("Error reading json")
+		log.Print(err)
+		fmt.Println()
+		return []byte("{\"status\":\"404 not found\"}")
+	}
+	json.Unmarshal(body, &tmpMbr)
+	// put the json into a database now
+	return []byte("{\"status\":\"200 ok\"}")
 }

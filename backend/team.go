@@ -17,8 +17,10 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"log"
+	"net/http"
 )
 
 type TeamsS struct {
@@ -34,7 +36,7 @@ type TeamS struct {
 	Awards    string   `json:"awards"`
 }
 
-func TestTeamJSON(name string) []byte {
+func TeamGet(name string) []byte {
 	rtn, err := ioutil.ReadFile(name)
 	if err != nil {
 		log.Print(err)
@@ -50,4 +52,18 @@ func TestTeamJSON(name string) []byte {
 		return rtn
 	}
 	return rtn
+}
+
+func TeamPut(r *http.Request) []byte {
+	var tmpMbr TeamS
+	body, err := ioutil.ReadAll(r.Body)
+	if err != nil {
+		log.Println("Error reading json")
+		log.Print(err)
+		fmt.Println()
+		return []byte("{\"status\":\"404 not found\"}")
+	}
+	json.Unmarshal(body, &tmpMbr)
+	// put the json into a database now
+	return []byte("{\"status\":\"200 ok\"}")
 }

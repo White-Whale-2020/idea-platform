@@ -76,7 +76,7 @@ func api(w http.ResponseWriter, r *http.Request) {
 	case "/api/vehicle":
 		apiVehicle(w, r)
 	default:
-		notFound(w, r)
+		notFound(w)
 	}
 }
 
@@ -84,91 +84,91 @@ func apiDocs(w http.ResponseWriter, r *http.Request) {
 	switch r.Method {
 	case "GET":
 		w.Write([]byte("{\"api-version\":\"1.0\",\"endpoint\":\"api\",\"endpoint\":[\"docs\",\"going\",\"hackathon\",\"idea\",\"member\",\"room\",\"team\",\"vehicle\"]}"))
-	case "POST":
+	case "POST": // docs shouldn't have a post method but keeping for the "printStuff()"
 		printStuff(r)
 	default:
-		notFound(w, r)
+		notFound(w)
 	}
 }
 
 func apiGoing(w http.ResponseWriter, r *http.Request) {
 	switch r.Method {
 	case "GET":
-		w.Write(TestGoingJSON("sampleJSON/going.json"))
+		w.Write(GoingGet("sampleJSON/going.json"))
 	case "POST":
-		fmt.Fprint(w, "Ideas Post!\n")
+		w.Write(GoingPut(r))
 	default:
-		notFound(w, r)
+		notFound(w)
 	}
 }
 
 func apiHackathon(w http.ResponseWriter, r *http.Request) {
 	switch r.Method {
 	case "GET":
-		w.Write(TestHackathonJSON("sampleJSON/hackathon.json"))
+		w.Write(HackathonGet("sampleJSON/hackathon.json"))
 	case "POST":
-		fmt.Fprint(w, "Ideas Post!\n")
+		w.Write(HackathonPut(r))
 	default:
-		notFound(w, r)
+		notFound(w)
 	}
 }
 
 func apiIdea(w http.ResponseWriter, r *http.Request) {
 	switch r.Method {
 	case "GET":
-		w.Write(TestIdeaJSON("sampleJSON/idea.json"))
+		w.Write(IdeaGet("sampleJSON/idea.json"))
 	case "POST":
-		fmt.Fprint(w, "Ideas Post!\n")
+		w.Write(IdeaPut(r))
 	default:
-		notFound(w, r)
+		notFound(w)
 	}
 }
 
 func apiMember(w http.ResponseWriter, r *http.Request) {
 	switch r.Method {
 	case "GET":
-		w.Write(TestMemberJSON("sampleJSON/member.json"))
+		w.Write(MemberGet("sampleJSON/member.json"))
 	case "POST":
-		fmt.Fprint(w, "Users Post!\n")
+		w.Write(MemberPut(r))
 	default:
-		notFound(w, r)
+		notFound(w)
 	}
 }
 
 func apiRoom(w http.ResponseWriter, r *http.Request) {
 	switch r.Method {
 	case "GET":
-		w.Write(TestRoomJSON("sampleJSON/room.json"))
+		w.Write(RoomGet("sampleJSON/room.json"))
 	case "POST":
-		fmt.Fprint(w, "Ideas Post!\n")
+		w.Write(RoomPut(r))
 	default:
-		notFound(w, r)
+		notFound(w)
 	}
 }
 
 func apiTeam(w http.ResponseWriter, r *http.Request) {
 	switch r.Method {
 	case "GET":
-		w.Write(TestTeamJSON("sampleJSON/team.json"))
+		w.Write(TeamGet("sampleJSON/team.json"))
 	case "POST":
-		fmt.Fprint(w, "Teams Post!\n")
+		w.Write(TeamPut(r))
 	default:
-		notFound(w, r)
+		notFound(w)
 	}
 }
 
 func apiVehicle(w http.ResponseWriter, r *http.Request) {
 	switch r.Method {
 	case "GET":
-		w.Write(TestVehicleJSON("sampleJSON/vehicle.json"))
+		w.Write(VehicleGet("sampleJSON/vehicle.json"))
 	case "POST":
-		fmt.Fprint(w, "Users Post!\n")
+		w.Write(VehiclePut(r))
 	default:
-		notFound(w, r)
+		notFound(w)
 	}
 }
 
-func notFound(w http.ResponseWriter, r *http.Request) {
+func notFound(w http.ResponseWriter) {
 	w.Write([]byte("{\"status\":\"404 not found\"}"))
 }
 

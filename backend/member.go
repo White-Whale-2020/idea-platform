@@ -17,8 +17,10 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"log"
+	"net/http"
 )
 
 type UsersS struct {
@@ -33,7 +35,7 @@ type UserS struct {
 	Skills []string `json:"skills"`
 }
 
-func TestMemberJSON(name string) []byte {
+func MemberGet(name string) []byte {
 	rtn, err := ioutil.ReadFile(name)
 	if err != nil {
 		log.Print(err)
@@ -49,4 +51,18 @@ func TestMemberJSON(name string) []byte {
 		return rtn
 	}
 	return rtn
+}
+
+func MemberPut(r *http.Request) []byte {
+	var tmpMbr UserS
+	body, err := ioutil.ReadAll(r.Body)
+	if err != nil {
+		log.Println("Error reading json")
+		log.Print(err)
+		fmt.Println()
+		return []byte("{\"status\":\"404 not found\"}")
+	}
+	json.Unmarshal(body, &tmpMbr)
+	// put the json into a database now
+	return []byte("{\"status\":\"200 ok\"}")
 }
