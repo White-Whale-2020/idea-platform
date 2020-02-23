@@ -27,7 +27,7 @@ const defaultPort = "8080"
 
 func main() {
 	log.Println("Welcome to the IDP (IDea Platform)")
-	log.Println("Authors: David Cho, Mike Groper, Kevon Nelson, Kyle Thomas")
+	log.Println("Authors: David Cho, Mike Roper, Kevon Nelson, Kyle Thomas")
 	log.Println("Version: beta")
 
 	port, exists := os.LookupEnv("GOPORT")
