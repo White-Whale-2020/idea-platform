@@ -5,7 +5,7 @@
 	Language:			Go
 
 	Authors: 			David Cho
-	 							Mike Groper
+	 							Mike Roper
 	 							Kevon Nelson
 	 							Kyle Thomas
 
