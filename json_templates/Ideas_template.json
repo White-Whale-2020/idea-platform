@@ -1,0 +1,33 @@
+{
+    "settings": {
+        "number_of_shards": 1
+    },
+    "mappings": {
+        "_source": {
+            "enabled": false
+        },
+        "properties" : {
+            "group_name" : {
+                "type" : "text"
+            },
+            "team_members" : {
+                "type" : "text"
+            },            
+            "description" : {
+                "type" : "text"
+            },
+            "eviorment" : {
+                "type" : "text"
+            },
+            "Proposed_date" : {
+                "type" : "date"
+            },
+            "done" : {
+                "type" : "boolean"
+            },
+            "event_date" : {
+                "type" : "date"
+            }
+        }
+    }
+}
