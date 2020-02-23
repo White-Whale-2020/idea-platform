@@ -19,14 +19,20 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 )
 
-const port = ":8080"
+const defaultPort = "8080"
 
 func main() {
 	log.Println("Welcome to the IDP (IDea Platform)")
 	log.Println("Authors: David Cho, Mike Groper, Kevon Nelson, Kyle Thomas")
 	log.Println("Version: beta")
+
+	port, exists := os.LookupEnv("GOPORT")
+	if !exists {
+		port = defaultPort
+	}
 
 	http.HandleFunc("/", frontend)
 	http.HandleFunc("/api/", api)
@@ -37,7 +43,7 @@ func main() {
 	*/
 
 	log.Println("Web server running on port", port)
-	log.Fatal(http.ListenAndServe(port, nil))
+	log.Fatal(http.ListenAndServe(":"+port, nil))
 }
 
 func frontend(w http.ResponseWriter, r *http.Request) {
