@@ -17,6 +17,7 @@ package main
 
 import (
 	"fmt"
+	"io/ioutil"
 	"log"
 	"net/http"
 	"os"
@@ -84,6 +85,7 @@ func apiDocs(w http.ResponseWriter, r *http.Request) {
 	case "GET":
 		w.Write([]byte("{\"api-version\":\"1.0\",\"endpoint\":\"api\",\"endpoint\":[\"docs\",\"going\",\"hackathon\",\"idea\",\"member\",\"room\",\"team\",\"vehicle\"]}"))
 	case "POST":
+		printStuff(r)
 	default:
 		notFound(w, r)
 	}
@@ -168,4 +170,15 @@ func apiVehicle(w http.ResponseWriter, r *http.Request) {
 
 func notFound(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte("{\"status\":\"404 not found\"}"))
+}
+
+func printStuff(r *http.Request) {
+	fmt.Println("<<<<< Header >>>>>>>")
+	for key, element := range r.Header {
+		fmt.Println("Key:", key, "=>", "Element:", element)
+	}
+	fmt.Println("<<<<< Body >>>>>>>")
+	body, _ := ioutil.ReadAll(r.Body)
+	fmt.Println(string(body))
+
 }
