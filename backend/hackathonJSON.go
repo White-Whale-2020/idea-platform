@@ -22,9 +22,9 @@ import (
 )
 
 type HackathonsS struct {
-	Endpoint   string            `json:"endpoint"`
-	APIversion string            `json:"api-version"`
-	Hackathon  []HackathonStruct `json:"hackathons"`
+	Endpoint   string       `json:"endpoint"`
+	APIversion string       `json:"api-version"`
+	Hackathon  []HackathonS `json:"hackathons"`
 }
 
 type HackathonS struct {
